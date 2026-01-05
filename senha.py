@@ -1,4 +1,4 @@
-#sneha correta
+#senha correta
 sc = str(12345)
 sd = input('Digite a senha:')
 

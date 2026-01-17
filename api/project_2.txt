@@ -1,0 +1,22 @@
+2️⃣ Gerenciador de Tarefas (To-Do List)
+
+📌 O que é
+Adicionar, remover, marcar como concluída.
+
+📌 Treina
+
+listas e dicts
+
+lógica
+
+persistência (arquivo)
+
+boas funções
+
+📌 Diferencial
+
+ordenar por status
+
+salvar em JSON
+
+carregar ao inicia

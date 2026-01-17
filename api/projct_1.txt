@@ -1,0 +1,34 @@
+🟢 NÍVEL 1 — Consolidar Python “de verdade”
+
+Projetos pequenos, mas bem feitos.
+
+1️⃣ Sistema de Cadastro (CLI)
+
+📌 O que é
+Um programa de terminal para cadastrar, listar, buscar e excluir dados.
+
+📌 Treina
+
+listas / dicionários
+
+funções
+
+validação de dados
+
+arquivos (.json ou .txt)
+
+📌 Extras
+
+salvar em JSON
+
+menu interativo
+
+tratar erros (try/except)
+
+👉 Exemplo:
+
+cadastro de alunos
+
+cadastro de produtos
+
+cadastro de clientes

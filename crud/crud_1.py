@@ -18,13 +18,19 @@ def atualizar_nota():
             nova_nota = float(input("Nova nota: "))
             a["nota"] = nova_nota
             print("Aluno atualizado com sucesso!")
+            break
+    else:
+        print("Aluno não encontrado.")
             
 def deletar():
-    aluno = input("Nome do aluno a ser deletado: ").capitalize()
-    for a in alunos:
-        if a["nome"] == aluno:
-            alunos.remove(a)
+    nome = input("Nome do aluno a ser deletado: ").capitalize()
+    for aluno in alunos:
+        if aluno["nome"] == nome:
+            alunos.remove(aluno)
             print("Aluno deletado com sucesso!")
+            return
+    else: 
+        print("Aluno não encontrado.")
 
 
 alunos = [] # lista para armazenar os alunos cadastrados - utilização de dicionarios para cada aluno-
@@ -36,7 +42,7 @@ while True: # loop infinito para menu, sendo quebrado apenas quando o usuario es
     print("2 - Listar alunos")
     print("3 - Atualizar nota do aluno")
     print("4 - Deletar aluno")
-    print("5 - Sair")
+    print("0 - Sair")
     print("-----"*2)
     opcao = input("Opção: ")
     if opcao == "1": #Utilizando das funcoes para cada operacao
@@ -47,7 +53,7 @@ while True: # loop infinito para menu, sendo quebrado apenas quando o usuario es
         atualizar_nota()
     elif opcao == "4":
         deletar()
-    elif opcao == "5":
+    elif opcao == "0":
         print("Saindo do sistema. Até mais!")
         break
     else:

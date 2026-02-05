@@ -4,19 +4,47 @@ def cadastrar_produto():
     print('--- Cadastro Produtos ---')
     id = len(produtos) + 1 
     print(f'ID Produto : {id}')
-    nome = input('Nome do Produto : ')
+    nome = input('Nome do Produto : ').capitalize()
     preco = float(input('Preço : R$'))
     estoque = int(input('Estoque : '))
     produto = {"ID": id, "Nome": nome, "Preço": preco, "Estoque": estoque}
     produtos.append(produto)
-    print(produtos)
     
 def listar_produtos():
-    pass
-def atualizar_produto():
-    pass
+    print('--- Produtos ---')
+    for produto in produtos:
+        print(f'ID : {produto['ID']} | Nome : {produto['Nome']} | Preço : {produto['Preço']} | Estoque : {produto['Estoque']}')
+    
+def atualizar_produto(produtos):
+    print('--- Editar Produtos ---')
+    produto = input('Informe o nome do produto para atualizar: ').capitalize()
+    for p in produtos:
+        if p['Nome'] == produto:
+            print('---|Produto|---')
+            print(f'1 - ID : {p['ID']}')
+            print(f'2 - Nome : {p['Nome']}')
+            print(f'3 - Preço : : {p['Preço']}')
+            print(f'4 - Estoque : {p['Estoque']}')
+            dado = input('Informe o nome do dado a ser atualizado: ')
+            if dado == 1:
+                dado = 'ID'
+                dado_att = int(input('Novo ID: '))
+                p[dado] = dado_att
+                print(f'Nome atualizado com sucesso!')
+                print(p)
+            break
+    else :
+        print('Produto não encontrado')
+            
+
 def deletar_produto():
-    pass
+    print('--- Excluir Produto ---')
+    produto = input('Informe o nome do produto para a exclusão: ')
+    for p in produtos:
+        if p['Nome'] == produto:
+           print(f'Deletando {p}')
+           produtos.remove(p)
+            
 
 produtos = []
 while True:
@@ -33,7 +61,7 @@ while True:
     elif opcao == 2:
         listar_produtos()
     elif opcao == 3:
-        atualizar_produto()
+        atualizar_produto(produtos)
     elif opcao == 4:
         deletar_produto()
     elif opcao == 0:

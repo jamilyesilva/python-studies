@@ -2,17 +2,18 @@
 def cadastrar_produto(produtos):
     #{"id": 1, "nome": "", "preco": 0.0, "estoque": 0}
     print('--- Cadastro Produtos ---')
+    # Id baseado no maior Id da lista
     if len(produtos) == 0:
         id = 1
     else:
         maior_id = max(p['id'] for p in produtos)
         id = maior_id + 1
     print(f'ID Produto : {id}')
-    nome = input('Nome do Produto : ').lower()
+    nome = input('Nome do Produto : ').lower() # lista padronizada lower()
     preco = valida_float('Preço : ')
     estoque = valida_int('Estoque : ')
     produto = {"id": id, "nome": nome, "preço": preco, "estoque": estoque}
-    if buscar_produto(nome, produtos):
+    if buscar_produto(nome, produtos): # sem produtos duplicados
         print('Dado duplicado!')
         print('Altere ou Remova!')
         return
@@ -48,6 +49,10 @@ def atualizar_produto():
             return
         elif dado == 2:
             dado_att = input('Novo Nome: ').lower()
+            if buscar_produto(dado_att, produtos): # sem produtos duplicados
+                print('Dado duplicado!')
+                print('Altere ou Remova!')
+                return
             p['nome'] = dado_att
             print(f'Nome atualizado com sucesso!')
             print(p)
@@ -88,7 +93,7 @@ def buscar_produto(produto, produtos): #Parâmetro é aquilo que MUDA de uma exe
     for p in produtos:
         if p['nome'] == produto:  
             return p
-    return 
+    return None
 
 
 def valida_int(mensagem):
@@ -139,6 +144,4 @@ while True:
 
 
 # validação de erro em inputs com int e float
-# Id baseado no maior Id da lista
-# lista padronizada lower()
-# sem produtos duplicados
+

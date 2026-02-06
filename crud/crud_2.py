@@ -23,10 +23,10 @@ def cadastrar_produto(produtos):
 
 def listar_produtos(produtos):
     print('--- Produtos ---')
-    if len(produtos) > 0:
+    if len(produtos) > 0: #verificando se não está vazia
         for produto in produtos:
             print(f'Id : {produto['id']} | Nome : {produto['nome']} | Preço : {produto['preço']} | Estoque : {produto['estoque']}')
-    else:
+    else:               #nome da variavel junto com a chave ['']
         print('Lista de produtos vazia')
 
 

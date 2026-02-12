@@ -69,3 +69,34 @@ print("--"*4)
 
 ----- BASE pt2 ----
 Termos:
+*herança =
+        quando uma classe nova(FILHO) recebe como parametro uma outra classe (PAI) já existente, fazendo assim
+        com que a classe filho tenha todos os atributos do pai, e podendo ter os seus próprios.
+        Utilizada para limitar acessoa itens especificos, criar metodos funcionais apenas para o filho e não pro
+        pai.
+        --- super() --- 
+        função para encaminhar todas as config/ chamar o construtor da classe pai
+
+------ Continuando o Codigo 1 ----
+#atributos
+ class Admin(Pessoas):
+    def __init__(self, user, nome, senha, plano)
+       super().__init__(user, nome, senha, plano)
+       self._equipe = []
+
+    def equipe(self):
+       return self.equipe
+
+    def adicionar_membro_equipe(self, membro)
+        if not membro in self.equipe:
+           adicionar_membro_equipe._equipe.append(membro)
+           print(f"{membro} adicionado a equipe")
+        else:
+           print(f"{membro} já é da equipe")
+
+
+#Metodos
+pessoa3 = Admin("kvortz", "Ana Cecilia", "1234", "premium") 
+pessoa3.adicionar_membro_equipe("Joao")
+print(pessoa3._equipe)
+

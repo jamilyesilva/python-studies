@@ -11,7 +11,7 @@ def abrir_arquivo():
             json.dump([], arqv, ensure_ascii=False, indent=4)
     if os.path.exists("crud/tarefa.json"):
         with open("crud/tarefa.json", "r", encoding="utf-8") as arqv:
-            pessoas = json.load(arqv)
+            pessoas = json.load(arqv) #json para objeto
             return pessoas
         
 def valida_int(mensagem):
@@ -65,18 +65,27 @@ def nova_tarefa():
 
 def concluir_tarefa(tarefas):
     print('--- Editar Tarefa ---')
-    opcao = valida_int('Infome o id da tarefa para concluir: ')
+    opcao = valida_int('Infome o id da tarefa para editar: ')
+    achou = False
     for tarefa in tarefas:   
         if opcao == tarefa["id"]:
-            tarefa["concluida"] = True
-            with open("crud/tarefa.json", "w", encoding="utf-8") as arqv:
-                json.dump(tarefas, arqv, ensure_ascii=False, indent=4)
-            print('Tarefa editada com sucesso!')
-        else:
-            break
+            if tarefa["concluida"] == True:
+                tarefa["concluida"] = False
+                achou = True
+                break
+            elif tarefa["concluida"] == False:
+                tarefa["concluida"] = True
+                achou = True
+                break
+    if achou == True:
+        with open("crud/tarefa.json", "w", encoding="utf-8") as arqv:
+            json.dump(tarefas, arqv, ensure_ascii=False, indent=4)
+            if tarefa["concluida"] == False:
+                print("Tarefa marcada como: NÃO CONCLUIDA")
+            else:
+                print('Tarefa marcada como: CONCLUIDA')
     else:
-        print('ID não encontrado! Por favor, tente novamente.')
-
+        print('ID não encontrado, tente novamente!')
 
 
 def visualizar_tarefas():

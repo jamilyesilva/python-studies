@@ -1,19 +1,71 @@
-Class ControleRemoto: ----
-    #O nome tem que ser com as iniciais maisculas
-    #Classes é um objeto que visa representar um conceito, um objeto do mundo real, 
-    # ou seja: 
-            #1 . Como em um controle remoto que é um objeto, as classes tem (metodos = funções) para representar
-            # as ações que um controle remoto tem, como ligar, desligar, aumentar o volume, etc.
-            #2. As classes tem (atributos = caracteristicas) para representar as características de um objeto, como a cor,
-            # o tamanho, etc.
+----- O que é OOP ----
+OOP(Oriented Object Programming) é um programa que tem varios objetos com regras especificas seguidas 
+que visa atender demandas grandes ou criar sistemas completos com configuraçoes diferentes para um
+mesmo objeto
 
-   - Configurar os atributos do controle remoto: (Caracteristicas) #sempre vai ter
-        altura
-        largura
-        profundidade
-        cor
+----- BASE pt1 ----
+Termos:
+*classe = 
+        Classes são a mesma coisa que objetos, são um conjunto de funcionalidades que podem ser reutilizadas.
+*objetos =
+        Cada Classe é um Objeto, pois ela visa ser util em algum tipo de aspecto, se nao me engano, sendo baseado 
+        em um objeto realistico, como um controle remoto
+*atributos =
+        caracteristicas, configuraçoes que todas as instancias de seu codigo precisa ter. Coisas como
+        ex: classe de clientes. Todo cliente precisaria ter atributos como nome, idade, cpf
+        mas indo de acordo com a utilização da sua classe
+*metodos =
+        funcionalidades (funções mesmo) do objeto separadas em funcoes para interagir com a classe.
+        ex: aumentar volume, trocar de canal, etc
+*instancias =
+        são objetos baseados na classe, normalmente para criar objetos semelhantes com atributos diferentes
+        logo as açoes ao decorrer do objeto seriam diferentes das demais, devido as suas configuraçoes 
+*__init__ =
+        é o nome da função inicial da classe. É onde os atributos / configuraçoes da classe ficam
+*self =
+        utilizado dentro da função __init__ pois visa apresentar que os valores daquelas configurações 
+        poderiam ser utilizados pelas instancias, evitando que todas as instancias tivessem as mesmas config
 
-   -  Configurar os metodos do controle: (Ações do objeto) # é variavel o que ele vai fazer
-        passar de canal
-        aumentar volume
-        abrir netflix
+------ CODIGO EXEMPLO ----
+# ATRIBUTOS
+class Pessoas:
+    def __init__(self, user, nome, senha, plano):
+        self.user = user
+        self.nome = nome
+        self.senha = senha
+        self.lista_planos = ["basico", "estudantil", "premium"]
+        if plano in self.lista_planos:
+            self.plano = plano
+            print(f"Plano {plano}")
+        else:
+            print("Plano inexistente")
+
+    def trocar_plano(self, novo_plano):
+        if novo_plano in self.lista_planos: #novo_plano nao tem self porque ta fora da função __init__
+            self.plano = novo_plano
+            print(f"Plano atualizado para {self.plano}")
+        else:
+            print("Plano inexistente")
+
+
+
+#METODOS :
+
+pessoa1 = Pessoas("chromantico", "jamily", "1234", "premium")
+print(pessoa1.user)
+print(pessoa1.plano)
+pessoa1.trocar_plano("estudantil")
+print(pessoa1.plano)
+print("--"*4)
+
+
+pessoa2 = Pessoas("anoxido", "emanuel", "1234", "basico")
+print(pessoa2.user)
+print(pessoa2.plano)
+pessoa2.trocar_plano("premium")
+print(pessoa2.plano)
+print("--"*4)
+
+
+----- BASE pt2 ----
+Termos:

@@ -1,4 +1,4 @@
-#CRUD de Produtos agor com JSONgitgit
+#CRUD de Produtos agora com JSON
 import json
 import os
 

@@ -1,0 +1,19 @@
+Class ControleRemoto: ----
+    #O nome tem que ser com as iniciais maisculas
+    #Classes é um objeto que visa representar um conceito, um objeto do mundo real, 
+    # ou seja: 
+            #1 . Como em um controle remoto que é um objeto, as classes tem (metodos = funções) para representar
+            # as ações que um controle remoto tem, como ligar, desligar, aumentar o volume, etc.
+            #2. As classes tem (atributos = caracteristicas) para representar as características de um objeto, como a cor,
+            # o tamanho, etc.
+
+   - Configurar os atributos do controle remoto: (Caracteristicas) #sempre vai ter
+        altura
+        largura
+        profundidade
+        cor
+
+   -  Configurar os metodos do controle: (Ações do objeto) # é variavel o que ele vai fazer
+        passar de canal
+        aumentar volume
+        abrir netflix

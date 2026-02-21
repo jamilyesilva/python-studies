@@ -1,7 +1,5 @@
 #Nível 1: Encapsulamento (Protegendo os Dados)
 # testando encapsulamento
-#Nível 2: Herança e Polimorfismo (Categorias de Dados)
-#   usando de herança e polimorfismo para criar mais objetos e modificar a apresentação
 class Funcionarios:
     def __init__(self, nome, setor, cargo, salario):
         self.nome = nome
@@ -22,6 +20,9 @@ class Funcionarios:
     def apresentar(self):
         print(f"Sou {self.nome}, do setor de {self.setor} atuando como {self.cargo} e salario {self.salario}")
 
+
+#Nível 2: Herança e Polimorfismo (Categorias de Dados)
+#   usando de herança e polimorfismo para criar mais objetos e modificar a apresentação
 class Gerentes(Funcionarios):
     def __init__(self, nome, setor, cargo, salario, bonus): # tem que informar os atributos pai que você utilizará
         super().__init__(nome, setor, cargo, salario) #super() chama o construtor da classe pai (Funcionarios) para inicializar os atributos herdados
@@ -45,7 +46,6 @@ class Gerentes(Funcionarios):
 
     def apresentar(self):
         print(f'Sou {self.nome} sendo {self.cargo} da empresa com um salario de {self.salario} e bonus {self.bonus}')
-
 
 class Estagiarios(Funcionarios):
     def __init__(self, nome, setor, cargo, salario, limite_horas):

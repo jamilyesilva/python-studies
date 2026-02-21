@@ -6,10 +6,10 @@ mesmo objeto
 ----- BASE pt1 ----
 Termos:
 *classe = 
-        Classes são a mesma coisa que objetos, são um conjunto de funcionalidades que podem ser reutilizadas.
+        Classe é o molde d eum objeto, são um conjunto de funcionalidades que podem ser reutilizadas.
 *objetos =
-        Cada Classe é um Objeto, pois ela visa ser util em algum tipo de aspecto, se nao me engano, sendo baseado 
-        em um objeto realistico, como um controle remoto
+        Cada instancia é um Objeto, pois ela visa ser util em algum tipo de aspecto, podendo obter seus proprios 
+        aspectos diferentes de um outro
 *atributos =
         caracteristicas, configuraçoes que todas as instancias de seu codigo precisa ter. Coisas como
         ex: classe de clientes. Todo cliente precisaria ter atributos como nome, idade, cpf
@@ -75,7 +75,13 @@ Termos:
         Utilizada para limitar acessoa itens especificos, criar metodos funcionais apenas para o filho e não pro
         pai.
         --- super() --- 
+        **PENSAR SE VAI UTILIZAR AQUELE METODO COM OS CLIENTES OU COM CADA UM EM ESPECIFICO ANTES DE COLOCAR FUNÇÃO FORA DO INIT
         função para encaminhar todas as config/ chamar o construtor da classe pai
+*encapsulamente =
+        pegar uma propriedade e criar metodos para ficar mais seguro os dados
+        é o tratamento que fazemos durante o codigo para que determinadas regras funcionem/ esteja seguras
+*composição =
+        colocar uma classe como propriedade da outra
 
 ------ Continuando o Codigo 1 ----
 #atributos
@@ -99,4 +105,6 @@ Termos:
 pessoa3 = Admin("kvortz", "Ana Cecilia", "1234", "premium") 
 pessoa3.adicionar_membro_equipe("Joao")
 print(pessoa3._equipe)
+
+
 

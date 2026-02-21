@@ -1,3 +1,4 @@
+from decimal import *
 #Nível 1: Encapsulamento (Protegendo os Dados)
 # testando encapsulamento
 class Funcionarios:
@@ -5,7 +6,7 @@ class Funcionarios:
         self.nome = nome
         self.setor = setor
         self.cargo = cargo
-        self._salario = salario
+        self.salario = salario
     
     @property # transforma metodo em atributo/propriedade, acessa como variavel mas está tem uma função por tras
     def salario(self):
@@ -18,8 +19,16 @@ class Funcionarios:
         self._salario = valor
 
     def apresentar(self):
-        print(f"Sou {self.nome}, do setor de {self.setor} atuando como {self.cargo} e salario {self.salario}")
+        print(f"Sou {self.nome}, do setor de {self.setor} atuando como {self.cargo} e salario R${self.salario}")
 
+    def __getstate__(self):
+        return f'{
+            "nome": self.nome, 
+            "setor": self.setor, 
+            "cargo": self.cargo, 
+            "salario": self.salario, 
+            }'
+        
 
 #Nível 2: Herança e Polimorfismo (Categorias de Dados)
 #   usando de herança e polimorfismo para criar mais objetos e modificar a apresentação
@@ -39,13 +48,13 @@ class Gerentes(Funcionarios):
         self._bonus = valor
 
     def aplicar_bonus(self):
-        salario = int(self.salario) 
-        bonus = int(self.bonus) * salario/100
+        salario = float(self.salario) 
+        bonus = float(self.bonus) * salario/100
         salario_total = salario + bonus
         self.salario = salario_total
 
     def apresentar(self):
-        print(f'Sou {self.nome} sendo {self.cargo} da empresa com um salario de {self.salario} e bonus {self.bonus}')
+        print(f'Sou {self.nome} sendo {self.cargo} da empresa com um salario de {self.salario} e atualmente com bonus de {self.bonus}%')
 
 class Estagiarios(Funcionarios):
     def __init__(self, nome, setor, cargo, salario, limite_horas):
@@ -64,6 +73,18 @@ class Estagiarios(Funcionarios):
         
     def apresentar(self):
         print(f"Sou {self.nome}, um {self.cargo}  com {self.salario} de salario por {self.limite_horas} horas de trabalho")
+
+#O Grande Desafio: Nível 3 (Abstração / Repositório)
+# class Gerenciador(Funcionarios):
+#     def __init__(self, funcionarios):
+#         self.funcionarios =[] # bd temporario
+
+#     def adicionar(funcionario):
+
+    #listar_todos()
+    #remover(nome)
+    #salvar_em_json()
+
 
 
 p1 = Funcionarios ("jamily", "ti", "desenvolvedora", 10)

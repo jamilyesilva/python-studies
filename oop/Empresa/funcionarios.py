@@ -1,6 +1,9 @@
 from decimal import *
+import os
+import json
 #Nível 1: Encapsulamento (Protegendo os Dados)
 # testando encapsulamento
+
 class Funcionarios:
     def __init__(self, nome: str, setor: str, cargo: str, salario: Decimal): # sempre typar as variaveis para evitar conflito DIQXY
         self.nome = nome
@@ -51,6 +54,26 @@ class Gerentes(Funcionarios):
         salario_total = salario + bonus
         self.salario = salario_total
 
+class DataBase(funcionarios):
+    # def open_json(self):
+    #     # to_dict
+    #     if not os.path.exists("db_funcionarios.json"):
+    #         with open("db_funcionarios.json", "w", encoding="utf-8") as arqv:
+    #             json.dump([], arqv, ensure_ascii=False, indent=4)
+    #     if os.path.exists("crud/tarefa.json"):
+    #         with open("crud/tarefa.json", "r", encoding="utf-8") as arqv:
+    #             pessoas = json.load(arqv) #json para objeto
+    #             return pessoas
+    
+    # def add_dict_to_json(self):
+    #     tarefas.append(nova_tarefa)
+    #     with open("crud/tarefa.json", "w", encoding="utf-8") as arqv:
+    #         json.dump(tarefas, arqv, ensure_ascii=False, indent=4) #dump = objeto para json
+    #     print('Tarefa criada com sucesso!')
+    # else:
+    #     print('O título não pode ser vazio! Por favor, tente novamente.')
+    #     return
+
     def apresentar(self):
         print(f'Sou {self.nome} sendo {self.cargo} da empresa com um salario de {self.salario} e atualmente com bonus de {self.bonus}%')
 
@@ -87,11 +110,14 @@ class Estagiarios(Funcionarios):
 
 p1 = Funcionarios ("jamily", "ti", "desenvolvedora", 10)
 print(p1.salario)
+print(p1.to_dict())
 
+print("______"*2)
 # como usamos kwargs entao temos que na assintura da classe definirmos o campo LIMITE_HORAS para não confundir o dict DIQXY
 p2 = Estagiarios("jamily", "ti", "desenvolvedora- Estagiaria", 1200, limite_horas=5)
 p2.apresentar()
 
+print("______"*2)
 # como usamos kwargs entao temos que na assintura da classe definirmos o campo BONUs para não confundir o dict DIQXY
 p3 = Gerentes("juan", "rh", "gerente", 2000, bonus=5)
 p3.aplicar_bonus()

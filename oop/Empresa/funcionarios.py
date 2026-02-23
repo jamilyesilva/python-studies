@@ -27,6 +27,33 @@ class Funcionarios:
         return {
             key.lstrip('_'): value for key, value in self.__dict__.items()
         }
+    
+    def open_json(self):
+        if not os.path.exists("db_funcionarios.json"):
+            with open("db_funcionarios.json", "w", encoding="utf-8") as arqv:
+                json.dump([], arqv, ensure_ascii=False, indent=4)
+        if os.path.exists("db_funcionarios.json"):
+            with open("db_funcionarios.json", "r", encoding="utf-8") as arqv:
+                self.pessoas = json.load(arqv) #json para objeto
+                return self.pessoas
+            
+    def add_dict_to_json(self):
+        lista_f = self.pessoas
+        if self.open_json():
+            if len(lista_f) == 0:
+                lista_f.append(self.to_dict)
+                with open("db_funcionarios.json", "w", encoding="utf-8") as arqv:
+                    json.dump(lista_f, arqv, ensure_ascii=False, indent=4) #dump = objeto para json
+                    return 'Funcionário Cadastrado'
+            elif len(lista_f) >= 1:
+                with open("db_funcionarios.json", "w", encoding="utf-8") as arqv:
+                    json.dump(lista_f, arqv, ensure_ascii=False, indent=4) #dump = objeto para json
+                    return 'Funcionário Cadastrado2'
+            else:
+                ValueError("numero negativo")
+        else:
+            ValueError("Arquivo Json inativo/ nao aberto")
+
         
 
 #Nível 2: Herança e Polimorfismo (Categorias de Dados)
@@ -53,26 +80,6 @@ class Gerentes(Funcionarios):
         bonus = self.bonus * salario / 100
         salario_total = salario + bonus
         self.salario = salario_total
-
-class DataBase(funcionarios):
-    # def open_json(self):
-    #     # to_dict
-    #     if not os.path.exists("db_funcionarios.json"):
-    #         with open("db_funcionarios.json", "w", encoding="utf-8") as arqv:
-    #             json.dump([], arqv, ensure_ascii=False, indent=4)
-    #     if os.path.exists("crud/tarefa.json"):
-    #         with open("crud/tarefa.json", "r", encoding="utf-8") as arqv:
-    #             pessoas = json.load(arqv) #json para objeto
-    #             return pessoas
-    
-    # def add_dict_to_json(self):
-    #     tarefas.append(nova_tarefa)
-    #     with open("crud/tarefa.json", "w", encoding="utf-8") as arqv:
-    #         json.dump(tarefas, arqv, ensure_ascii=False, indent=4) #dump = objeto para json
-    #     print('Tarefa criada com sucesso!')
-    # else:
-    #     print('O título não pode ser vazio! Por favor, tente novamente.')
-    #     return
 
     def apresentar(self):
         print(f'Sou {self.nome} sendo {self.cargo} da empresa com um salario de {self.salario} e atualmente com bonus de {self.bonus}%')
@@ -108,20 +115,23 @@ class Estagiarios(Funcionarios):
 
 
 
-p1 = Funcionarios ("jamily", "ti", "desenvolvedora", 10)
+p1 = Funcionarios ("jamily", "ti", "desenvolvedora", 59)
 print(p1.salario)
 print(p1.to_dict())
+print(p1.open_json())
+print(p1.add_dict_to_json())
+
 
 print("______"*2)
 # como usamos kwargs entao temos que na assintura da classe definirmos o campo LIMITE_HORAS para não confundir o dict DIQXY
-p2 = Estagiarios("jamily", "ti", "desenvolvedora- Estagiaria", 1200, limite_horas=5)
-p2.apresentar()
+# p2 = Estagiarios("jamily", "ti", "desenvolvedora- Estagiaria", 1200, limite_horas=5)
+# p2.apresentar()
 
-print("______"*2)
-# como usamos kwargs entao temos que na assintura da classe definirmos o campo BONUs para não confundir o dict DIQXY
-p3 = Gerentes("juan", "rh", "gerente", 2000, bonus=5)
-p3.aplicar_bonus()
-p3.apresentar()
+# print("______"*2)
+# # como usamos kwargs entao temos que na assintura da classe definirmos o campo BONUs para não confundir o dict DIQXY
+# p3 = Gerentes("juan", "rh", "gerente", 2000, bonus=5)
+# p3.aplicar_bonus()
+# p3.apresentar()
 
 
 

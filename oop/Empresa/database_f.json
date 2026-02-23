@@ -1,1 +1,15 @@
-[]
+[
+    {
+        "nome": "jamily",
+        "setor": "ti",
+        "cargo": "desenvolvedora",
+        "salario": 59
+    },
+    {
+        "nome": "jamily",
+        "setor": "ti",
+        "cargo": "desenvolvedora- Estagiaria",
+        "salario": 1200,
+        "limite_horas": 5
+    }
+]

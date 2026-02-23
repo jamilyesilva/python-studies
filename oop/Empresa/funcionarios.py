@@ -3,7 +3,7 @@ import os
 import json
 #Nível 1: Encapsulamento (Protegendo os Dados)
 # testando encapsulamento
-lista_f = []
+lista_f=[]
 
 class Funcionarios:
     def __init__(self, nome: str, setor: str, cargo: str, salario: Decimal): # sempre typar as variaveis para evitar conflito DIQXY
@@ -35,23 +35,19 @@ class Funcionarios:
                 json.dump([], arqv, ensure_ascii=False, indent=4)
         if os.path.exists("database_f.json"):
             with open("oop/Empresa/database_f.json", "r", encoding="utf-8") as arqv:
-                pessoas = json.load(arqv) #json para objeto
-                lista_f.append(pessoas)
+                lista_f = json.load(arqv) #json para objeto
                 return True
-            
+
     def add_dict_to_json(self, lista_f: list):
-        print("oii")
-        op_json= self.open_json()
-        if op_json == True:
-            print("oii")
-            print(self.to_dict())
-            lista_f.append(self.to_dict())
-            print(lista_f)
-            with open("oop/Empresa/database_f.json", "w", encoding="utf-8") as arqv:
-                json.dump(lista_f, arqv, ensure_ascii=False, indent=4) #dump = objeto para json
-                return 'Funcionário Cadastrado'
-        else:
-            ValueError("Arquivo Json inativo/ nao aberto")
+        lista_f.append(self.to_dict())
+        # if self.open_json() == True:
+        print(self.to_dict())
+        print(lista_f)
+        with open("oop/Empresa/database_f.json", "w", encoding="utf-8") as arqv:
+            json.dump(lista_f, arqv, ensure_ascii=False, indent=4) #dump = objeto para json
+            return 'Funcionário Cadastrado'
+        # else:
+        #     ValueError("Arquivo Json inativo/ nao aberto")
 
         
 
@@ -123,8 +119,9 @@ p1.add_dict_to_json(lista_f)
 
 print("______"*2)
 # como usamos kwargs entao temos que na assintura da classe definirmos o campo LIMITE_HORAS para não confundir o dict DIQXY
-# p2 = Estagiarios("jamily", "ti", "desenvolvedora- Estagiaria", 1200, limite_horas=5)
-# p2.apresentar()
+p2 = Estagiarios("jamily", "ti", "desenvolvedora- Estagiaria", 1200, limite_horas=5)
+p2.open_json()
+p2.add_dict_to_json(lista_f)
 
 # print("______"*2)
 # # como usamos kwargs entao temos que na assintura da classe definirmos o campo BONUs para não confundir o dict DIQXY

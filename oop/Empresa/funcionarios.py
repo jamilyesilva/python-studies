@@ -3,6 +3,7 @@ import os
 import json
 #Nível 1: Encapsulamento (Protegendo os Dados)
 # testando encapsulamento
+lista_f = []
 
 class Funcionarios:
     def __init__(self, nome: str, setor: str, cargo: str, salario: Decimal): # sempre typar as variaveis para evitar conflito DIQXY
@@ -28,29 +29,27 @@ class Funcionarios:
             key.lstrip('_'): value for key, value in self.__dict__.items()
         }
     
-    def open_json(self):
-        if not os.path.exists("db_funcionarios.json"):
-            with open("db_funcionarios.json", "w", encoding="utf-8") as arqv:
+    def open_json(self) -> list:
+        if not os.path.exists("database_f.json"):
+            with open("oop/Empresa/database_f.json", "w", encoding="utf-8") as arqv:
                 json.dump([], arqv, ensure_ascii=False, indent=4)
-        if os.path.exists("db_funcionarios.json"):
-            with open("db_funcionarios.json", "r", encoding="utf-8") as arqv:
-                self.pessoas = json.load(arqv) #json para objeto
-                return self.pessoas
+        if os.path.exists("database_f.json"):
+            with open("oop/Empresa/database_f.json", "r", encoding="utf-8") as arqv:
+                pessoas = json.load(arqv) #json para objeto
+                lista_f.append(pessoas)
+                return True
             
-    def add_dict_to_json(self):
-        lista_f = self.pessoas
-        if self.open_json():
-            if len(lista_f) == 0:
-                lista_f.append(self.to_dict)
-                with open("db_funcionarios.json", "w", encoding="utf-8") as arqv:
-                    json.dump(lista_f, arqv, ensure_ascii=False, indent=4) #dump = objeto para json
-                    return 'Funcionário Cadastrado'
-            elif len(lista_f) >= 1:
-                with open("db_funcionarios.json", "w", encoding="utf-8") as arqv:
-                    json.dump(lista_f, arqv, ensure_ascii=False, indent=4) #dump = objeto para json
-                    return 'Funcionário Cadastrado2'
-            else:
-                ValueError("numero negativo")
+    def add_dict_to_json(self, lista_f: list):
+        print("oii")
+        op_json= self.open_json()
+        if op_json == True:
+            print("oii")
+            print(self.to_dict())
+            lista_f.append(self.to_dict())
+            print(lista_f)
+            with open("oop/Empresa/database_f.json", "w", encoding="utf-8") as arqv:
+                json.dump(lista_f, arqv, ensure_ascii=False, indent=4) #dump = objeto para json
+                return 'Funcionário Cadastrado'
         else:
             ValueError("Arquivo Json inativo/ nao aberto")
 
@@ -116,10 +115,10 @@ class Estagiarios(Funcionarios):
 
 
 p1 = Funcionarios ("jamily", "ti", "desenvolvedora", 59)
-print(p1.salario)
-print(p1.to_dict())
-print(p1.open_json())
-print(p1.add_dict_to_json())
+# print(p1.salario)
+# print(p1.to_dict())
+p1.open_json()
+p1.add_dict_to_json(lista_f)
 
 
 print("______"*2)

@@ -28,27 +28,6 @@ class Funcionarios:
         return {
             key.lstrip('_'): value for key, value in self.__dict__.items()
         }
-    
-    def open_json(self) -> list:
-        if not os.path.exists("database_f.json"):
-            with open("oop/Empresa/database_f.json", "w", encoding="utf-8") as arqv:
-                json.dump([], arqv, ensure_ascii=False, indent=4)
-        if os.path.exists("database_f.json"):
-            with open("oop/Empresa/database_f.json", "r", encoding="utf-8") as arqv:
-                lista_f = json.load(arqv) #json para objeto
-                return True
-
-    def add_dict_to_json(self, lista_f: list):
-        lista_f.append(self.to_dict())
-        # if self.open_json() == True:
-        print(self.to_dict())
-        print(lista_f)
-        with open("oop/Empresa/database_f.json", "w", encoding="utf-8") as arqv:
-            json.dump(lista_f, arqv, ensure_ascii=False, indent=4) #dump = objeto para json
-            return 'Funcionário Cadastrado'
-        # else:
-        #     ValueError("Arquivo Json inativo/ nao aberto")
-
         
 
 #Nível 2: Herança e Polimorfismo (Categorias de Dados)
@@ -98,30 +77,52 @@ class Estagiarios(Funcionarios):
         print(f"Sou {self.nome}, um {self.cargo}  com {self.salario} de salario por {self.limite_horas} horas de trabalho")
 
 #O Grande Desafio: Nível 3 (Abstração / Repositório)
-# class Gerenciador(Funcionarios):
-#     def __init__(self, funcionarios):
-#         self.funcionarios =[] # bd temporario
+# possue lista de funcionarios, criar uma variavel para o gerenciador nas instancias para puxar os dados
+class Gerenciador():
+    def __init__(self, file_path): # usar typagem
+        self.file_path = file_path
 
-#     def adicionar(funcionario):
+    def open_json(self) -> list:
+        if not os.path.exists(self.file_path):
+            with open(self.file_path, "w", encoding="utf-8") as arqv:
+                json.dump([], arqv, ensure_ascii=False, indent=4)
+        if os.path.exists(self.file_path):
+            with open(self.file_path, "r", encoding="utf-8") as arqv:
+                lista_f = json.load(arqv) #json para objeto
+                return lista_f # ainda nao está retornando os valores que estão na lista
+
+#finalizar essa parte no trabaio
+    def add_funcionario(self, lista_f: list):
+        pass
+    #     lista_f.append(self.to_dict())
+    #     # if self.open_json() == True:
+    #     print(self.to_dict())
+    #     print(lista_f)
+    #     with open("oop/Empresa/database_f.json", "w", encoding="utf-8") as arqv:
+    #         json.dump(lista_f, arqv, ensure_ascii=False, indent=4) #dump = objeto para json
+    #         print('Funcionário Cadastrado') 
+    #     # else:
+    #     #     ValueError("Arquivo Json inativo/ nao aberto")
+
+
+
+
+
+
 
     #listar_todos()
     #remover(nome)
     #salvar_em_json()
 
 
-
-p1 = Funcionarios ("jamily", "ti", "desenvolvedora", 59)
-# print(p1.salario)
-# print(p1.to_dict())
-p1.open_json()
-p1.add_dict_to_json(lista_f)
-
-
 print("______"*2)
 # como usamos kwargs entao temos que na assintura da classe definirmos o campo LIMITE_HORAS para não confundir o dict DIQXY
 p2 = Estagiarios("jamily", "ti", "desenvolvedora- Estagiaria", 1200, limite_horas=5)
-p2.open_json()
-p2.add_dict_to_json(lista_f)
+print(p2.to_dict())
+p3 = Gerenciador("oop/Empresa/database_f.json")
+p3.open_json()
+#ate aqui funcionou
+
 
 # print("______"*2)
 # # como usamos kwargs entao temos que na assintura da classe definirmos o campo BONUs para não confundir o dict DIQXY

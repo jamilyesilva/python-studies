@@ -89,38 +89,43 @@ class Gerenciador():
         if os.path.exists(self.file_path):
             with open(self.file_path, "r", encoding="utf-8") as arqv:
                 lista_f = json.load(arqv) #json para objeto
-                return lista_f # ainda nao está retornando os valores que estão na lista
+                return lista_f 
 
-#finalizar essa parte no trabaio
-    def add_funcionario(self, lista_f: list):
-        pass
-    #     lista_f.append(self.to_dict())
-    #     # if self.open_json() == True:
-    #     print(self.to_dict())
-    #     print(lista_f)
-    #     with open("oop/Empresa/database_f.json", "w", encoding="utf-8") as arqv:
-    #         json.dump(lista_f, arqv, ensure_ascii=False, indent=4) #dump = objeto para json
-    #         print('Funcionário Cadastrado') 
-    #     # else:
-    #     #     ValueError("Arquivo Json inativo/ nao aberto")
-
-
-
-
-
-
-
+    def add_f(self, funcionario: dict):
+        print("------------")
+        lista_f.append(funcionario)
+        with open("oop/Empresa/database_f.json", "w", encoding="utf-8") as arqv:
+            json.dump(lista_f, arqv, ensure_ascii=False, indent=4) #dump = objeto para json
+            print('Funcionário Cadastrado') 
+        
     #listar_todos()
+    def to_list_f(self):
+        print(lista_f)
+
     #remover(nome)
-    #salvar_em_json()
+    def remove_f(self):
+        pass
+
+
+
+
+
+
 
 
 print("______"*2)
 # como usamos kwargs entao temos que na assintura da classe definirmos o campo LIMITE_HORAS para não confundir o dict DIQXY
 p2 = Estagiarios("jamily", "ti", "desenvolvedora- Estagiaria", 1200, limite_horas=5)
-print(p2.to_dict())
+p4 = Estagiarios("samuel", "vendedor", "caixa", 1200, limite_horas=5)
+
+
 p3 = Gerenciador("oop/Empresa/database_f.json")
-p3.open_json()
+p3.add_f(p4.to_dict())
+p5 = Gerenciador("oop/Empresa/database_f.json")
+p5.open_json()
+p5.add_f(p2.to_dict())
+p5.to_list_f()
+
 #ate aqui funcionou
 
 

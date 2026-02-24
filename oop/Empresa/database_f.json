@@ -1,9 +1,10 @@
 [
     {
-        "nome": "jamily",
-        "setor": "ti",
-        "cargo": "desenvolvedora",
-        "salario": 59
+        "nome": "samuel",
+        "setor": "vendedor",
+        "cargo": "caixa",
+        "salario": 1200,
+        "limite_horas": 5
     },
     {
         "nome": "jamily",

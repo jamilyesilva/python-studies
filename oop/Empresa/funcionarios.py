@@ -77,7 +77,7 @@ class Estagiarios(Funcionarios):
 
 #O Grande Desafio: Nível 3 (Abstração / Repositório)
 # possue lista de funcionarios, criar uma variavel para o gerenciador nas instancias para puxar os dados
-class Gerenciador():
+class Config():
     def __init__(self, file_path, lista_f): # usar typagem
         self.file_path = file_path
         self.lista_f = lista_f
@@ -110,5 +110,5 @@ class Gerenciador():
            
     
 # como usamos kwargs entao temos que na assintura da classe definirmos o campo LIMITE_HORAS para não confundir o dict DIQXY
-p2 = Estagiarios("manuel", "ti", "desenvolvedora- Estagiaria", 1200, limite_horas=5)
-p4 = Estagiarios("leol", "vendedor", "caixa", 1200, limite_horas=5)
+g = Gerentes("manuel", "ti", "desenvolvedora- Estagiaria", 1200, bonus =5)
+e = Estagiarios("leol", "vendedor", "caixa", 1200, limite_horas=5)

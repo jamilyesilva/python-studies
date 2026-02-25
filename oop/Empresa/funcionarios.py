@@ -3,7 +3,6 @@ import os
 import json
 #Nível 1: Encapsulamento (Protegendo os Dados)
 # testando encapsulamento
-lista_f=[]
 
 class Funcionarios:
     def __init__(self, nome: str, setor: str, cargo: str, salario: Decimal): # sempre typar as variaveis para evitar conflito DIQXY
@@ -43,12 +42,12 @@ class Gerentes(Funcionarios):
         return self._bonus
     
     @bonus.setter
-    def bonus(self, valor: int): # sempre typar as variaveis para evitar conflito DIQXY
+    def bonus(self, valor: Decimal): # sempre typar as variaveis para evitar conflito DIQXY
         if valor > 100 or valor < 1:
             raise ValueError('O valor não se refere a uma porcentagem')
         self._bonus = valor
 
-    def aplicar_bonus(self):
+    def aplicar_bonus(self) ->list: 
         # quanto tipamos nossos atributos n precisamos converter nossa variaveis DIQXY
         salario = self.salario
         bonus = self.bonus * salario / 100
@@ -79,62 +78,37 @@ class Estagiarios(Funcionarios):
 #O Grande Desafio: Nível 3 (Abstração / Repositório)
 # possue lista de funcionarios, criar uma variavel para o gerenciador nas instancias para puxar os dados
 class Gerenciador():
-    def __init__(self, file_path): # usar typagem
+    def __init__(self, file_path, lista_f): # usar typagem
         self.file_path = file_path
+        self.lista_f = lista_f
 
     def open_json(self) -> list:
         if not os.path.exists(self.file_path):
             with open(self.file_path, "w", encoding="utf-8") as arqv:
-                json.dump([], arqv, ensure_ascii=False, indent=4)
+                json.dump([], arqv, ensure_ascii=False, indent=4) # talvez tirar para nao deixarem criar mais 
         if os.path.exists(self.file_path):
             with open(self.file_path, "r", encoding="utf-8") as arqv:
-                lista_f = json.load(arqv) #json para objeto
-                return lista_f 
+                self.lista_f = json.load(arqv) #json para objeto
+                return self.lista_f 
 
     def add_f(self, funcionario: dict):
-        print("------------")
-        lista_f.append(funcionario)
-        with open("oop/Empresa/database_f.json", "w", encoding="utf-8") as arqv:
-            json.dump(lista_f, arqv, ensure_ascii=False, indent=4) #dump = objeto para json
-            print('Funcionário Cadastrado') 
+        self.lista_f.append(funcionario)
+        with open(self.file_path, "w", encoding="utf-8") as arqv:
+            json.dump(self.lista_f, arqv, ensure_ascii=False, indent=4) #dump = objeto para json
         
-    #listar_todos()
     def to_list_f(self):
-        print(lista_f)
+        with open(self.file_path, "r", encoding = "utf-8") as arqv:
+            self.lista_f = json.load(arqv)
+        return self.lista_f
+        
 
-    #remover(nome)
-    def remove_f(self):
-        pass
+    def remove_f(self, f):
+        self.lista_f = [func for func in self.lista_f if func["nome"] != f]
+        with open(self.file_path, "w", encoding = "utf-8") as arqv:
+            json.dump(self.lista_f, arqv, indent = 4, ensure_ascii = False)
 
-
-
-
-
-
-
-
-print("______"*2)
+           
+    
 # como usamos kwargs entao temos que na assintura da classe definirmos o campo LIMITE_HORAS para não confundir o dict DIQXY
-p2 = Estagiarios("jamily", "ti", "desenvolvedora- Estagiaria", 1200, limite_horas=5)
-p4 = Estagiarios("samuel", "vendedor", "caixa", 1200, limite_horas=5)
-
-
-p3 = Gerenciador("oop/Empresa/database_f.json")
-p3.add_f(p4.to_dict())
-p5 = Gerenciador("oop/Empresa/database_f.json")
-p5.open_json()
-p5.add_f(p2.to_dict())
-p5.to_list_f()
-
-#ate aqui funcionou
-
-
-# print("______"*2)
-# # como usamos kwargs entao temos que na assintura da classe definirmos o campo BONUs para não confundir o dict DIQXY
-# p3 = Gerentes("juan", "rh", "gerente", 2000, bonus=5)
-# p3.aplicar_bonus()
-# p3.apresentar()
-
-
-
-
+p2 = Estagiarios("manuel", "ti", "desenvolvedora- Estagiaria", 1200, limite_horas=5)
+p4 = Estagiarios("leol", "vendedor", "caixa", 1200, limite_horas=5)

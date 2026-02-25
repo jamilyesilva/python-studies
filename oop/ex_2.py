@@ -3,8 +3,8 @@ class Produto:
         self.nome = nome
         self.preco = preco
     
-    def etiquetar()
-
+    def etiquetar():
+        pass
 #pessoa
 class Pessoa:
     def __init__(self, nome,idade):

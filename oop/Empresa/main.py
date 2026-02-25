@@ -21,7 +21,7 @@ def add_f():
 
     new_f = {"nome": nome, "setor": setor, "cargo": cargo, "salario": salario} # typagem que nao pode faltar kkkk
     add_to_dict = F.to_dict(new_f)
-    print(add_to_dict) 
+    
 
 def list_f():
     pass
@@ -36,12 +36,12 @@ while True:
           1 - Adicionar Novo Funcionario \n
           2 - Listar Funcionarios \n
           3 - Excluir Funcionario \n
-          0 - Sair     
+          0 - Sprint(add_to_dict) air     
     """)
     escolha = valida_int('escolha : ')
     if escolha == 1:
       #chamar metodo para colocar os atributos e depois salvar 
-        F.add_f()
+        add_f()
     elif escolha == 2:
         pass
     elif escolha == 3:

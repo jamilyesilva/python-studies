@@ -1,1 +1,9 @@
-[]
+[
+    {
+        "nome": "luma",
+        "setor": "adm",
+        "cargo": "gestora",
+        "salario": 4000.0,
+        "bonus": 15
+    }
+]

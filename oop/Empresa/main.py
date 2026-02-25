@@ -33,31 +33,34 @@ def add_f():
         bonus = valida_int("bonus (%): ")
         new_f = G(nome, setor, cargo, salario, bonus = bonus) # typagem que nao pode faltar kkkk
         add = C("oop/Empresa/database_f.json", [])
-        add.add_f(new_f.to_list())
+        add.add_f(new_f.to_dict())
     elif tipo == 2:
         nome = input("nome: ").lower()
         setor = input("setor: ").lower()
         cargo = input("cargo: ").lower()
         salario = valida_decimal("salario: ")
         limite_horas = valida_int("carga horaria (d): ")
-        new_f = G(nome, setor, cargo, salario, limite_horas = limite_horas)
+        new_f = E(nome, setor, cargo, salario, limite_horas = limite_horas)
         add = C("oop/Empresa/database_f.json", [])
         add.open_json()
-        add.add_f(new_f.to_list())
+        add.add_f(new_f.to_dict())
     else:
         print("Valor Incorreto, Por Favor, digite apenas (1) ou (2)")
-
-    
-    
-    
-    
-    
+   
 
 def list_f():
-    pass
+    print('----Lista de Usuarios ----')
+    lista = C("oop/Empresa/database_f.json", [])
+    lista.open_json()
+    print(lista.to_list_f())
 
 def del_f():
-    pass
+    print('----Deletando Usuario ----')
+    f = input('Informe o nome do usuario para exclusão:\n nome = ')
+    delete_f = C("oop/Empresa/database_f.json", [])
+    delete_f.open_json()
+    delete_f.remove_f()
+
     
     
 while True:
@@ -66,7 +69,7 @@ while True:
           1 - Adicionar Novo Funcionario \n
           2 - Listar Funcionarios \n
           3 - Excluir Funcionario \n
-          0 - Sprint(add_to_dict) air     
+          0 - Sair    
     """)
     escolha = valida_int('escolha : ')
     if escolha == 1:

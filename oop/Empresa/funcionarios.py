@@ -68,7 +68,7 @@ class Estagiarios(Funcionarios):
     
     @limite_horas.setter
     def limite_horas(self, valor: int):
-        if valor >= 6:
+        if valor > 6:
             raise ValueError("Horas Excedidas, apenas 6 horas")
         self._limite_horas = valor
         
@@ -95,7 +95,7 @@ class Config():
         self.lista_f.append(funcionario)
         with open(self.file_path, "w", encoding="utf-8") as arqv:
             json.dump(self.lista_f, arqv, ensure_ascii=False, indent=4) #dump = objeto para json
-        
+          
     def to_list_f(self):
         with open(self.file_path, "r", encoding = "utf-8") as arqv:
             self.lista_f = json.load(arqv)

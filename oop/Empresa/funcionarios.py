@@ -1,9 +1,7 @@
 from decimal import *
 import os
 import json
-#Nível 1: Encapsulamento (Protegendo os Dados)
-# testando encapsulamento
-
+#Nível 1: Atribuição e Encapsulamento (Protegendo os Dados)
 class Funcionarios:
     def __init__(self, nome: str, setor: str, cargo: str, salario: Decimal): # sempre typar as variaveis para evitar conflito DIQXY
         self.nome = nome
@@ -58,7 +56,7 @@ class Gerentes(Funcionarios):
         print(f'Sou {self.nome} sendo {self.cargo} da empresa com um salario de {self.salario} e atualmente com bonus de {self.bonus}%')
 
 class Estagiarios(Funcionarios):
-    def __init__(self, *args, limite_horas: int, **kwargs):
+    def __init__(self, *args, limite_horas: int, **kwargs): 
         super().__init__(*args, **kwargs) 
         self.limite_horas = limite_horas 
 
@@ -78,9 +76,14 @@ class Estagiarios(Funcionarios):
 #O Grande Desafio: Nível 3 (Abstração / Repositório)
 # possue lista de funcionarios, criar uma variavel para o gerenciador nas instancias para puxar os dados
 class Config():
-    def __init__(self, file_path, lista_f): # usar typagem
+    def __init__(self, file_path): # usar typagem
         self.file_path = file_path
-        self.lista_f = lista_f
+        self.lista_f = self.open_json()
+
+
+    def _save(self):
+        with open(self.file_path, "w", encoding="utf-8") as arqv:
+            json.dump(self.lista_f, arqv, ensure_ascii=False, indent=4) #dump = objeto para json
 
     def open_json(self) -> list:
         if not os.path.exists(self.file_path):
@@ -93,8 +96,7 @@ class Config():
 
     def add_f(self, funcionario: dict): 
         self.lista_f.append(funcionario)
-        with open(self.file_path, "w", encoding="utf-8") as arqv:
-            json.dump(self.lista_f, arqv, ensure_ascii=False, indent=4) #dump = objeto para json
+        open_path = self._save()
         return self.lista_f #retora a lista atualizada
           
     def to_list_f(self):
@@ -104,10 +106,13 @@ class Config():
         
 
     def remove_f(self, f):
+        lenght_before = len(self.lista_f)
         self.lista_f = [func for func in self.lista_f if func["nome"] != f]
-        with open(self.file_path, "w", encoding = "utf-8") as arqv:
-            json.dump(self.lista_f, arqv, indent = 4, ensure_ascii = False)
-
+        lenght_after = len(self.lista_f)
+        if lenght_after == lenght_before:
+            raise ValueError(f'Nome {f} incorreto ou inexistente')
+        else: 
+            open_path = self._save()
            
     
 # como usamos kwargs entao temos que na assintura da classe definirmos o campo LIMITE_HORAS para não confundir o dict DIQXY

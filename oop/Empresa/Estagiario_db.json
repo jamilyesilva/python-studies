@@ -1,0 +1,9 @@
+[
+    {
+        "nome": "juan",
+        "setor": "limpeza",
+        "cargo": "limpar sla kkk",
+        "salario": 3000.0,
+        "limite_horas": 4
+    }
+]

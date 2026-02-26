@@ -1,0 +1,9 @@
+[
+    {
+        "nome": "jami",
+        "setor": "ti",
+        "cargo": "dev",
+        "salario": 3000.0,
+        "bonus": 15
+    }
+]

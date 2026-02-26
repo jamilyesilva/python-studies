@@ -89,12 +89,13 @@ class Config():
         if os.path.exists(self.file_path):
             with open(self.file_path, "r", encoding="utf-8") as arqv:
                 self.lista_f = json.load(arqv) #json para objeto
-                return self.lista_f 
+                return self.lista_f #lista com funcionarios
 
-    def add_f(self, funcionario: dict):
+    def add_f(self, funcionario: dict): 
         self.lista_f.append(funcionario)
         with open(self.file_path, "w", encoding="utf-8") as arqv:
             json.dump(self.lista_f, arqv, ensure_ascii=False, indent=4) #dump = objeto para json
+        return self.lista_f #retora a lista atualizada
           
     def to_list_f(self):
         with open(self.file_path, "r", encoding = "utf-8") as arqv:
@@ -110,5 +111,3 @@ class Config():
            
     
 # como usamos kwargs entao temos que na assintura da classe definirmos o campo LIMITE_HORAS para não confundir o dict DIQXY
-g = Gerentes("manuel", "ti", "desenvolvedora- Estagiaria", 1200, bonus =5)
-e = Estagiarios("leol", "vendedor", "caixa", 1200, limite_horas=5)

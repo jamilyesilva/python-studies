@@ -32,7 +32,7 @@ def add_f():
         salario = valida_decimal("salario: ")
         bonus = valida_int("bonus (%): ")
         new_f = G(nome, setor, cargo, salario, bonus = bonus) # typagem que nao pode faltar kkkk
-        add = C("oop/Empresa/database_f.json", [])
+        add = C("oop/Empresa/Gerente_db.json", [])
         add.add_f(new_f.to_dict())
     elif tipo == 2:
         nome = input("nome: ").lower()
@@ -41,7 +41,7 @@ def add_f():
         salario = valida_decimal("salario: ")
         limite_horas = valida_int("carga horaria (d): ")
         new_f = E(nome, setor, cargo, salario, limite_horas = limite_horas)
-        add = C("oop/Empresa/database_f.json", [])
+        add = C("oop/Empresa/Estagiario_db.json", [])
         add.open_json()
         add.add_f(new_f.to_dict())
     else:

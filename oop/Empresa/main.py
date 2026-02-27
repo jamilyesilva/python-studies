@@ -23,7 +23,7 @@ def add_f(): # fazer uma função aq
         salario = valida_tipo(float, "salario: ")
         bonus = valida_tipo(int, "bonus (%): ")
         new_f = G(nome, setor, cargo, salario, bonus = bonus) # utilizamos kwargs, logo na assintura da classe definirmos o campo LIMITE_HORAS para não confundir o dict DIQXY
-        add = C("oop/Empresa/Gerente_db.json")
+        add = C("oop/Empresa/json/Gerente_db.json")
         add.open_json()
         add.add_f(new_f.to_dict())
     elif tipo == 2:
@@ -33,7 +33,7 @@ def add_f(): # fazer uma função aq
         salario = valida_tipo(float, "salario: ")
         limite_horas = valida_tipo(int, "carga horaria (d): ")
         new_f = E(nome, setor, cargo, salario, limite_horas = limite_horas)
-        add = C("oop/Empresa/Estagiario_db.json")
+        add = C("oop/Empresa/json/Estagiario_db.json")
         add.open_json()
         add.add_f(new_f.to_dict())
     else:
@@ -43,12 +43,12 @@ def add_f(): # fazer uma função aq
 def list_f():
     print('----Lista de Usuarios ----')
     print(" -- Gerentes --")
-    lista = C("oop/Empresa/Gerente_db.json")
+    lista = C("oop/Empresa/json/Gerente_db.json")
     lista.open_json()
     for funcionario in lista.to_list_f():
         print(f"""Nome: {funcionario['nome']}| Setor: {funcionario['setor']} | Cargo: {funcionario['cargo']}""")
     print(" -- Estágiarios --")
-    lista = C("oop/Empresa/Estagiario_db.json")
+    lista = C("oop/Empresa/json/Estagiario_db.json")
     lista.open_json()
     for funcionario in lista.to_list_f():
         print(f"""Nome: {funcionario['nome']}| Setor: {funcionario['setor']} | Cargo: {funcionario['cargo']}""")
@@ -59,12 +59,12 @@ def del_f():
     tipo = valida_tipo(int," (1) - Gerente | (2) - Estágiario\n opção= ")
     if tipo == 1:  
         f = input('Informe o nome do Gerente para exclusão:\n nome = ').lower()
-        delete_f = C("oop/Empresa/Gerente_db.json")
+        delete_f = C("oop/Empresa/json/Gerente_db.json")
         delete_f.open_json()
         delete_f.remove_f(f)
     elif tipo == 2:  
         f = input('Informe o nome do Estagiarios para exclusão:\n nome = ').lower()
-        delete_f = C("oop/Empresa/Estagiario_db.json")
+        delete_f = C("oop/Empresa/json/Estagiario_db.json")
         delete_f.open_json()
         delete_f.remove_f(f)
 
@@ -80,7 +80,6 @@ while True:
     """)
     escolha = valida_tipo(int,'escolha : ')
     if escolha == 1:
-      #chamar metodo para colocar os atributos e depois salvar 
         add_f()
     elif escolha == 2:
         list_f()

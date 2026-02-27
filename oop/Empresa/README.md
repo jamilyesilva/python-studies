@@ -1,9 +1,10 @@
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 ![JSON](https://img.shields.io/badge/json-5E5E5E?style=for-the-badge&logo=json&logoColor=white)
 ![OOP](https://img.shields.io/badge/OOP-Object--Oriented-brightgreen?style=for-the-badge)
-![Clean Code](https://img.shields.io/badge/Clean%20Code-DIQXY-orange?style=for-the-badge)
 # 👥 Sistema de Gerenciamento de Funcionários (CRUD)
-* Este é um projeto para estudos de Python
+* Este é um projeto para estudos de Python  
+<img width="324" height="198" alt="image" src="https://github.com/user-attachments/assets/ddc14ed8-5d92-4063-9532-40b273c947e0" />
+  
 > Sistema CLI (comand line system) para gerenciar funcionários, utilizando os conceitos avançados de OOP em Python com persistência de dados em JSON.
 
 ## Funcionalidades:
@@ -52,3 +53,4 @@ def __init__(self, nome: str, setor: str, cargo: str, salario: Decimal):
 
 **by: Jamily Em. Silva**  
 _Utilize para fins educacionais_
+
